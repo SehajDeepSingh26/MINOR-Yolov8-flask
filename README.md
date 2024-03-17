@@ -6,7 +6,9 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the req
 
 ##### Windows:
 
-## Activate Virtual Env -- venvapp: 
+## Create and Activate Virtual Env -- venvapp: 
+cd **directory**
+conda create -n venvapp
 conda activate venvapp
 
 ```zsh
