@@ -7,9 +7,15 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the req
 ##### Windows:
 
 ## Create and Activate Virtual Env -- venvapp: 
+```zsh
 cd **directory**
+```
+```zsh
 conda create -n venvapp
+```
+```zsh
 conda activate venvapp
+```
 
 ```zsh
 pip install -r requirements.txt
