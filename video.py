@@ -14,7 +14,7 @@ ZONE_POLYGON = np.array([
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="YOLOv8 on MP4 video")
-    parser.add_argument("--video-file", default="vidp.mp4",
+    parser.add_argument("--video-file", default="sample.mp4",
                         help="Path to the input MP4 video file")
     args = parser.parse_args()
     return args
@@ -33,7 +33,7 @@ def main():
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    model = YOLO("yolov8l.pt")
+    model = YOLO("best.pt")
 
     box_annotator = sv.BoxAnnotator(
         thickness=2,
