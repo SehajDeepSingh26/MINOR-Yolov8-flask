@@ -6,13 +6,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style media="screen">
+      *,
+      *:before,
+      *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #080710;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .background {
+        width: 430px;
+        height: 520px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+
+      .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .shape:first-child {
+        background: linear-gradient(#3dbb70, #15b653);
+        left: -80px;
+        top: -80px;
+      }
+
+      .shape:last-child {
+        background: linear-gradient(to right, #0aa300, #006b00);
+        right: -30px;
+        bottom: -80px;
+      }
+
+      .container {
+        text-align: center;
+        color: #ffffff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+      }
+
+      h1 {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 0px;
+      }
+
+      .btn {
+        display: inline-block;
+        margin: 15px;
+        background-color: #ffffff;
+        color: black;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      }
+
+      .btn:hover {
+        background-color: #15b653; /* Darker green */
+        transform: scale(1.05);
+      }
+
+      .btn:focus {
+        outline: none;
+      }
+    </style>
 </head>
 
 <body>
-    <h1>Login Authentication System in Flask.</h1>
-    <a href="{{ url_for('login') }}">Login Page</a><br>
-    <a href="{{ url_for('register') }}">Register Page</a><br>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
 
+    <div class="container">
+        <h1>AI - based CCTV Network for Crime Detection</h1>
+        <a href="{{ url_for('login') }}" class="btn">Login Page</a><br>
+        <a href="{{ url_for('register') }}" class="btn">Register Page</a><br>
+    </div>
 </body>
 
 </html>

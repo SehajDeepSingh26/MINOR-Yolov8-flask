@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
-from main import Alert  # Replace "your_module_name" with the actual module name
+from main import Alert  
 
 
 app = Flask(__name__)
@@ -116,6 +116,7 @@ def register():
 def alerts():
     # Query the database to retrieve alerts
     alerts = Alert.query.all()
+    print("Retrieved alerts:", alerts)
     return render_template('alerts.html', alerts=alerts)
 
 #^ to run main.py
@@ -127,7 +128,8 @@ def run_script():
     # Adjust the command to fit your Anaconda setup and script path
     command = "D:/Anacoda/condabin/conda run -n venvapp python main.py"
     result = subprocess.run(command, capture_output=True, text=True, shell=True)
-    return result.stdout if result.stdout else "Error or no output"
+    print(result.stdout if result.stdout else "Error or no output")
+    return
 
 
 if __name__ == "__main__":

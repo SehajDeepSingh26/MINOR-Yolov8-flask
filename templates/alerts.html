@@ -469,16 +469,13 @@
           display: block;
           max-width: 100%; /* Ensure the image doesn't exceed its original size */
           height: auto;
-        }
-
-
-
-       
+        }      
 
     </style>
-    <title>Your Title Here</title>
+    <title>AI - based CCTV Network for Crime Detection</title>
 </head>
-<body>
+<body> 
+
 <section>
     <div class="left-div">
         <br>
@@ -488,10 +485,6 @@
             <li><a href=""><i class="fa fa-th-large"></i> ADMIN</a></li>
             <li><button id="run-script" class="fa fa-th-large">Camera Monitoring</button></li>
             <li class="active"><a href=""><i class="fa fa-key"></i>ALERTS</a></li>
-            <!-- <li><a href=""><i class="fa fa-desktop"></i> Admin</a></li>
-            <li><a href=""><i class="fa fa-gear"></i> Settings</a></li>
-            <li><a href=""><i class="fa fa-bullhorn"></i> Support</a></li>
-            <li><a href=""><i class="fa fa-power-off"></i> Quit</a></li>  -->
         </ul>
         <br><br>
 
@@ -544,15 +537,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for alert in alerts %}
+                            {% for alert in alerts | reverse %}
                             <tr>
                                 <td>{{ alert.id }}</td>
                                 <td>{{ alert.item_name }}</td>
                                 <td>{{ alert.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                                <!-- <td><img src="../screenshots/" alt="Screenshot"></td> -->
-                                <!-- <td><img src="{{ url_for('static', filename='images/screenshot_20230924111940.jpg') }}" alt="Screenshot"></td> -->
+                                <td>
+                                    {% if alert.screenshot_paths %}
+                                        <!-- Replace backslashes with forward slashes in the screenshot path -->
+                                        {% set image_path = alert.screenshot_paths.replace('\\', '/') %}
+                                        <img src="{{ url_for('static', filename='screenshots/' + image_path.split('/')[-1]) }}" alt="Screenshot" width="150">
+                                    {% else %}
+                                        No Image Available
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% endfor %}
+                        </tbody>
                     </table>
                 </div>
 
@@ -562,11 +563,15 @@
 </section>
 <script>
     document.getElementById('run-script').addEventListener('click', function() {
-        window.alert("Object Detection started !!")
+        setTimeout(function() {
+            window.alert("Object Detection started !!");
+        }, 6000); 
+        
         fetch('/run-script', {method: 'POST'})
             .catch(error => console.error('Error:', error));
     });
 </script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>

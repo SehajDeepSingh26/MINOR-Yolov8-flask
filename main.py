@@ -20,10 +20,11 @@ class Alert(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(50), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    screenshot_paths = db.Column(db.String(200))
 
 
 # Directory to save screenshots
-SCREENSHOTS_DIR = "screenshots"
+SCREENSHOTS_DIR = "static/screenshots"
 
 # Create the screenshots directory if it doesn't exist
 if not os.path.exists(SCREENSHOTS_DIR):
@@ -108,11 +109,12 @@ def main():
                 current_datetime = time.strftime("%Y%m%d%H%M%S")
                 screenshot_path = os.path.join(
                     SCREENSHOTS_DIR, f"screenshot_{current_datetime}.jpg")
+                screenshot_path = screenshot_path.replace("\\", "/")
                 cv2.imwrite(screenshot_path, frame)
                 item_name = label.split()[0]
 
                 # Create an Alert object and add it to the database
-                alert = Alert(item_name=item_name)
+                alert = Alert(item_name=item_name, screenshot_paths=screenshot_path)
                 db.session.add(alert)
                 db.session.commit()
 
