@@ -129,7 +129,7 @@ def run_script():
     command = "D:/Anacoda/condabin/conda run -n venvapp python main.py"
     result = subprocess.run(command, capture_output=True, text=True, shell=True)
     print(result.stdout if result.stdout else "Error or no output")
-    return
+    return result.stdout if result.stdout else "Error or no output"
 
 
 if __name__ == "__main__":
