@@ -1,0 +1,7 @@
+# Force Python files to be counted as Python
+*.py linguist-language=Python
+
+*.html linguist-vendored
+
+venv/* linguist-vendored
+__pycache__/* linguist-vendored
